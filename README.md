@@ -1,4 +1,4 @@
 Jaggery-basic-auth-clent
 ========================
 
-basic auth client to access
+basic auth client to access python-restapi
