@@ -1,0 +1,20 @@
+<%
+
+var include = require("secureClient.jag");
+include.secure_call({ username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print("<li id='message'><p>--------Start Call</p></li>");
+var out = get("http://localhost:9773/JagClient/RequestWithEncode.jag", { username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print(out);
+print("<li id='message'><p>Done Call</p></li>");
+
+print("<li id='message'><p>--------Start Call</p></li>");
+var out1 = get("http://localhost:9773/JagClient/Request.jag", { username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print(out1);
+print("<li id='message'><p>Done Call</p></li>");
+
+
+
+%>

@@ -1,0 +1,22 @@
+<%       
+
+function secure_call(request){  
+        var Base64Encode = require("Base64Encode.jag");
+
+	var username = request.username;
+	var password = request.password;
+	var url = request.url;
+	var data = request.data;
+	   
+	var code = "Basic " + username + ":" + password;;
+        var auth = Base64Encode.base64_encode(code);
+	var header = {"Authorization":auth};
+	var repleyJson = get(url, data ,header,"json");
+	  
+        response.content  = repleyJson;
+
+}    
+
+%>
+
+

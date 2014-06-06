@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html>
+<head>
+
+
+	<title>Book Store Organizer</title>
+	<!-- Google will often use this as its description of your page/site. Make it good. -->
+	
+
+	<!-- Dublin Core Metadata : http://dublincore.org/ -->
+    <link rel="stylesheet" href="styles.css">
+	
+</head>
+
+<body>
+    include ("jaggeryClient.jag");
+
+	 <form id="task" name="task">
+                <input type="button" id="addentryBtn" value="Add New Entry"/>
+	 </form> 
+
+<!-- here comes the javascript -->
+
+<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+<script src="jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  $("#addentryBtn").click(function() {
+	   $.get("jaggeryClient.jag", { username:"jon",password:"pass1", url:"https://10.100.5.82:8080/getModuleList" },
+	       function(data){
+		
+	   });
+	 });
+
+});
+
+
+</script>
+
+
+</body>
+</html>

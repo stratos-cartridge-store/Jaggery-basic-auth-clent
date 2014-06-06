@@ -1,0 +1,17 @@
+<%
+        
+
+	var username = request.getParameter("username");
+	var password = request.getParameter("password");
+
+
+	var url = request.getParameter("url");
+	var data = request.getParameter("data");
+	   
+	var auth = "Basic " + username + ":" + password;;
+
+	var header = {"Authorization":auth};
+	var repleyJson = get(url, data ,header,"json");
+	print(repleyJson);  
+
+%>
