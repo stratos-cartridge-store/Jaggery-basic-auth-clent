@@ -1,7 +1,0 @@
-<puppetConf>
-    <puppetPublicUrl>http://localhost:8080/getModuleList</puppetPublicUrl>
-    <puppetBasicAuth>
-        <userName>jon</userName>
-        <password>pass1</password>
-    </puppetBasicAuth>
-</puppetConf>
