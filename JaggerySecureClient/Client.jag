@@ -1,0 +1,65 @@
+<%       
+
+
+var conf = require("puppet-conf.json");
+var Base64Encode = require("Base64Encode.jag");
+
+var username = conf.oauthConfiguration.username;
+var password = conf.oauthConfiguration.password;
+var server_url = conf.puppetMasterEndServerConfiguration.url;
+
+var code = "Basic " + username + ":" + password;
+var auth = Base64Encode.base64_encode(code);
+var header = {"Authorization":auth};
+
+var List = conf.puppetMasterEndServerConfiguration.ListAvailableModules;
+var Install = conf.puppetMasterEndServerConfiguration.installPuppetModule;
+var Progress = conf.puppetMasterEndServerConfiguration.GetModuleInstallationProgress;
+var isComplete = conf.puppetMasterEndServerConfiguration.isDownloadComplete;
+
+
+function secure_call(request){ 
+        var data = request.data;
+        var url = server_url+request.url;
+	var repleyJson = get(url, data ,header,"json");	  
+        response.content  = repleyJson;
+}    
+
+
+function sendRequest(request){ 
+
+	var action = request.action;
+
+	if(action == List){
+		var method = List;
+	}
+        else if(action == Install){
+		var method = Install;   
+		var temp = encodeURIComponent(request.url);
+		request.url = "/url/"+temp+"/name/"+request.name;
+	}
+	else if(action == Progress | action == isComplete){
+		var method = action;   
+		request.url = "/name/"+request.name;
+	}
+	
+	var error = [];
+        var log = new Log();
+        
+	try{
+		var repleyJson = secure_call({method:method,url:method+request.url})	  
+        	
+	    }catch(e){
+		log.warn("Config " + e);
+		error.push({"errorMessage":e});
+		repleyJson = e;
+	    }
+
+	response.content  = repleyJson;
+} 
+
+
+
+%>
+
+

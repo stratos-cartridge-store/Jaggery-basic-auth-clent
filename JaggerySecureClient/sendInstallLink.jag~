@@ -1,0 +1,25 @@
+<%
+    var conf = require("puppet-conf.json");
+    var include = require("Client.jag");    
+    
+    var action1 = conf.puppetMasterEndServerConfiguration.GetModuleInstallationProgress;
+    var action2 = conf.puppetMasterEndServerConfiguration.ListAvailableModules;
+  var action3 = conf.puppetMasterEndServerConfiguration.installPuppetModule;
+var action4 = conf.puppetMasterEndServerConfiguration.isDownloadComplete;
+
+     var out1 = include.sendRequest({ action:action2, url:"", data:"" });
+     print(out1);
+
+    var uri = "http://localhost:9763/store/storage/cartridge/8f5df728-c371-4997-b1d7-d3aac78b15e7/7d767b35-f343-485e-b716-51d99b75ed8b/android.tar.gz";
+    
+    var out2 = include.sendRequest({ action:action3, url:uri, name:"test1", data:"" });
+    print(out2);
+
+    var out4 = include.sendRequest({ action:action1, url:uri, name:"test1", data:"" });
+    print(out4);
+
+   var out3 = include.sendRequest({ action:action4, url:uri, name:"test1", data:"" });
+    print(out3);
+
+
+%>

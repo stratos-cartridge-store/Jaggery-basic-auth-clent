@@ -1,0 +1,28 @@
+<%
+
+var include = require("Client.jag");
+var out = include.secure_call({ username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print(out);
+print("<li id='message'><p>--------Start Call</p></li>");
+var out = get("http://localhost:9773/JagClient/RequestWithEncode.jag", { username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print(out);
+print("<li id='message'><p>Done Call</p></li>");
+
+print("<li id='message'><p>--------Start Call</p></li>");
+var out1 = get("http://localhost:9773/JagClient/Request.jag", { username:"jon",password:"pass1", url:"https://localhost:8080/getModuleList", data:"" });
+
+print(out1);
+print("<li id='message'><p>Done Call</p></li>");
+
+    var uri = "http://localhost:9763/store/storage/cartridge/8f5df728-c371-4997-b1d7-d3aac78b15e7/7d767b35-f343-485e-b716-51d99b75ed8b/android.tar.gz";
+    var res = encodeURIComponent(uri);
+    print(res);
+
+var out2 = include.secure_call({ username:"jon",password:"pass1", url:"https://localhost:8080/installPuppetModule/url/"+res+"/name/android1", data:"" });
+print(out2);
+
+
+
+%>
